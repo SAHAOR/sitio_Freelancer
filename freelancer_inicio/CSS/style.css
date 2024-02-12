@@ -20,9 +20,57 @@ body{
 .titulo{
     text-align: center;
     font-size: var(--fuente-principal);
-    color: var(--primario);
+    color: var(--oscuro);
     /*font-family: Arial, Helvetica, sans-serif; toma opciones en orden*/
 }
 .titulo span{
     font-size: 2rem;
 }
+
+.contenedor{
+    width: 120rem;
+    margin-top: 0; /*es la forma larga de margin*/
+    margin-left: auto;
+    margin-bottom: 0;
+    margin-right: auto;
+
+    margin: 0 auto 0 auto; /*forma corta margin*/
+    margin: 0 auto; /*forma mas corta margin*/
+    display: block; /*para ubicar los elementos (block es saltando linea)*/
+}
+
+.nav-bg{
+    background-color: var(--secundario);
+}
+
+.navegacion-principal{
+    padding: 0rem; /*padding dentro del elemento, margin por fuera, misma sintaxis*/
+    display: flex; /*habilita la posibilidad de distribuir hijos*/
+    flex-direction: row; /*cambiar flex por columna o filas*/
+    align-items: center; /*distribuir contenido horizontalmente (con flex column)*/
+    justify-content: space-around ; /*distribuir contenido horizontalmente (con flex row)*/
+}
+
+.navegacion-principal a {
+    text-decoration: none; /*quitar o cambiar estilo de links (quitar raya)*/
+    color: var(--blanco);
+    font-size: 2rem;
+    font-weight: 700; /*cambiar grosor, bold es 700 y normal es 400*/
+    padding: 1rem;
+}
+
+.navegacion-principal a:hover{ /*cuando se posa el mouse sobre el elemento*/
+    background-color: var(--primario);
+    padding: 4rem;
+    color: var(--oscuro);
+}
+
+.navegacion-principal a:visited{ /*cuando se visita el enlace*/
+}
+.navegacion-principal a:focus{ /*se marca el elemnto (util cuando se navega con teclado)*/
+}
+
+@media (min-width: 480px ){ /*de ahi para arriba se aplica esa config (tamanos recomendables 480, 768, */
+}
+
+

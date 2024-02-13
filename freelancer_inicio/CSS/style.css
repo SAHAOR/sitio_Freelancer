@@ -1,10 +1,18 @@
+/* HERRAMIENTAS DE AYUDA PARA CSS 
+-Responsively (app para ver en diferentes tamanos pagina)
+- CSSmatic.com (web para evaluar colores y sombras en css)
+- CanIuse.com (ver que caracteristicas de css estan soportadas por navegador)
+*/
+
+
 :root{  /*pseudoselectores no existen en html, registrar custom properties*/
     /*en este caso crear una paleta de colores*/
     --blanco: #ffffff;
     --oscuro: #212121;
     --primario: rgba(255,193,7,1); /*utilizando con canal alfa*/
-    --secundario: #0097a7;
+    --secundario: #9e189e;
     --gris: #757575;
+    --grisClaro: #9c9c9c;
 
     --fuente-principal: 3.8rem;
 
@@ -12,14 +20,45 @@
 
 html{
     font-size: 62.5%;
+    box-sizing: border-box; /*elimina problema de dimensionar imagenes exactas, con bordes*/
 }
-body{
+
+*, *:before, *:after { /* *es para seleccionar todo, y el after y before son pseudoelementos */
+    box-sizing: inherit; /*elimina problema de dimensionar imagenes exactas, con bordes*/
+  }
+
+body{ /*se define la parte visible del proyecto y para toda la pagina*/
     font-family: 'Ubuntu', sans-serif;
     font-size: 16px; /* 1 rem = 10 px con html 62.5% y body 16px*/
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 80% ); /*agregar color gradiente*/
 }
-.titulo{
+
+.sombra{
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,122,0.54); /* -- es prefijo para uso exclusivo en ciertos navegadores no compatibles con la version original*/
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,122,0.54);
+    box-shadow: 0px 5px 15px 0px rgba(112,112,122,0.54);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+h1{
+    font-size: 3.8rem;
+}
+
+h2{
+    font-size: 2.8rem;
+}
+
+h3{
+    font-size: 1.8rem;
+}
+
+h1, h2, h3{
     text-align: center;
-    font-size: var(--fuente-principal);
+}
+
+.titulo{
     color: var(--oscuro);
     /*font-family: Arial, Helvetica, sans-serif; toma opciones en orden*/
 }
@@ -28,7 +67,7 @@ body{
 }
 
 .contenedor{
-    width: 120rem;
+    max-width: 120rem; /*toma como maximo eso si lo hay disponible, si no toma el 100%*/
     margin-top: 0; /*es la forma larga de margin*/
     margin-left: auto;
     margin-bottom: 0;
@@ -46,23 +85,52 @@ body{
 .navegacion-principal{
     padding: 0rem; /*padding dentro del elemento, margin por fuera, misma sintaxis*/
     display: flex; /*habilita la posibilidad de distribuir hijos*/
-    flex-direction: row; /*cambiar flex por columna o filas*/
-    align-items: center; /*distribuir contenido horizontalmente (con flex column)*/
-    justify-content: space-around ; /*distribuir contenido horizontalmente (con flex row)*/
+    flex-direction: column; /*cambiar flex por columna o filas*/
+    align-items: center; /*distribuir contenido horizontalmente (con flex column) y vertical (con flex row*/
+    justify-content: space-around ; /*distribuir contenido horizontalmente (con flex row) y vertical (flex column)*/
+}
+
+@media (min-width: 480px) { /*estandar para celular*/
+    
+}
+
+@media (min-width: 768px) { /*estandar para tablet*/
+    .navegacion-principal{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+@media (min-width: 1140px) { /* estandar para laptop*/
+}
+
+@media (min-width: 1400px) { /*estandar para pc*/
+    
 }
 
 .navegacion-principal a {
     text-decoration: none; /*quitar o cambiar estilo de links (quitar raya)*/
     color: var(--blanco);
     font-size: 2rem;
-    font-weight: 700; /*cambiar grosor, bold es 700 y normal es 400*/
+    font-weight: 400; /*cambiar grosor, bold es 700 y normal es 400*/
     padding: 1rem;
 }
 
 .navegacion-principal a:hover{ /*cuando se posa el mouse sobre el elemento*/
     background-color: var(--primario);
-    padding: 4rem;
+    width: 100%;
+    text-align: center;
     color: var(--oscuro);
+}
+
+@media (min-width: 768px) {
+    .navegacion-principal a:hover{
+        width: 50%;
+        border-style:hidden;
+        border-radius: 1rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        font-weight: 700;
+    }
 }
 
 .navegacion-principal a:visited{ /*cuando se visita el enlace*/
@@ -70,7 +138,125 @@ body{
 .navegacion-principal a:focus{ /*se marca el elemnto (util cuando se navega con teclado)*/
 }
 
-@media (min-width: 480px ){ /*de ahi para arriba se aplica esa config (tamanos recomendables 480, 768, */
+
+
+.hero{
+    background-image: url(../img/fondo_linkedin7.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+    
+    height:64rem;
+    padding: 30px;
+    position: relative; /*para ubicar a los hijos en una posicion absoluta*/
+    margin-bottom: 2rem;
 }
+
+.img-hero img{
+    position: absolute;
+    height: 300px;
+    top: 40%;
+    left: 16%;
+    border-radius: 10%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Añade una sombra */
+}
+
+.contenido-hero{
+    position: absolute; /*para ubicarse en una posicion absoluta del padre*/
+    width: 40%; /*para ocupar el ancho total del padre*/
+    height: 90%; /*para ocupar alto total del padre*/
+    top: 5%; /*para mover el contenido dentro del espacio*/
+    left: 53%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 2rem; /*agregar radio a los elementos*/
+
+    display: flex; /*codigo para alinear vertical y horizontalmente*/
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+
+.contenido-hero h2, .contenido-hero p{ /*llamando dos clases al mismo tiempo*/
+    color: var(--blanco);
+    padding: 0rem 2rem;
+    text-align:center;
+}
+
+@media (min-width: 768px) {
+    .contenido-hero h2, .contenido-hero p{
+        padding: 0rem 4rem;
+        text-align: center;
+    }
+    .contenido-hero h2{
+        padding-bottom: 2rem;
+    }
+}
+
+.ubicacion{
+    font-size: 1.8rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0rem;
+}
+
+@media (min-width: 768px) {
+    .ubicacion{
+        font-size: 1.8rem;
+        padding: 0rem;
+        font-weight: bold;
+    }
+}
+
+.boton{ /*codigo para botones*/
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    width: 90%;
+    text-align: center;
+}
+
+.boton:hover{
+    width: 90%;
+    background-color: var(--primario);
+}
+
+@media (min-width: 768px) {
+    .boton{
+        width: auto; /*para resetear el valor al estandar*/
+        font-size: 2.3rem;
+    }
+
+    .boton:hover{
+        width: 60%;
+        background-color: var(--primario);
+        color: var(--oscuro);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        font-weight: bold;
+    }
+}
+
+
+
+@media (min-width: 768px) {
+    .servicios{
+        display: grid; /*en lugar de flex, grid es para ubicar elementos en malla, */
+        grid-template-columns: 300px 300px 300px; /*definir columnas de grid*/
+        grid-template-rows: 100px 100px 100px; /*definir filas de grid*/
+    
+        grid: 300px 300px 300px / 100px 100px 100px; /*forma corta de grid*/
+    
+        grid-template-columns: repeat(3, 1fr); /*1 fr coge a partes iguales algo, en 3 columnas*/
+
+        column-gap: 1rem;
+    }
+}
+
 
 
